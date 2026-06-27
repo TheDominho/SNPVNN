@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Totalna sus stranka 💀</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+h1{
+    font-size:64px;
+    color:white;
+    text-shadow:2px 2px 10px rgba(0,0,0,.3);
+}
+
+p{
+    margin-top:15px;
+    color:white;
+    font-size:24px;
+}
+
+.slider{
+    margin-top:40px;
+    width:800px;
+    max-width:90%;
+    height:500px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    position:relative;
+}
+
+.slider img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    position:absolute;
+    opacity:0;
+    transition:opacity 1s;
+}
+
+.slider img.active{
+    opacity:1;
+}
+
+/* Confetti */
+
+.confetti{
+    position:absolute;
+    width:12px;
+    height:12px;
+    top:-20px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-10vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>🎉 Všetko najlepšie k narodeninám, ty debil! 🎉</h1>
+
+<p>Dúfame že dneska agresívne gúniš celý deň a prajeme ti veľa zdravia šťastia a wife predavačku z frešu ❤️</p>
+
+<div class="slider">
+    <img src="img1.jpg" class="active">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+</div>
+
+<script>
+
+// Automatic image rotation
+
+const images=document.querySelectorAll(".slider img");
+
+let current=0;
+
+setInterval(()=>{
+
+    images[current].classList.remove("active");
+
+    current=(current+1)%images.length;
+
+    images[current].classList.add("active");
+
+},4000);
+
+
+// Confetti
+
+const colors=[
+"#ff4d6d",
+"#ffd60a",
+"#00bbf9",
+"#06d6a0",
+"#9b5de5",
+"#ffffff"
+];
+
+for(let i=0;i<180;i++){
+
+    const c=document.createElement("div");
+
+    c.className="confetti";
+
+    c.style.left=Math.random()*100+"vw";
+
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+
+    c.style.animationDuration=(3+Math.random()*5)+"s";
+
+    c.style.animationDelay=Math.random()*5+"s";
+
+    c.style.opacity=Math.random();
+
+    c.style.transform=`rotate(${Math.random()*360}deg)`;
+
+    document.body.appendChild(c);
+
+}
+
+</script>
+
+</body>
+</html>
