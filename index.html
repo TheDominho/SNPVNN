@@ -14,18 +14,13 @@
 
 html, body{
     height:100%;
-}
-
-/* 🔥 NEW: scroll slides */
-body{
+    overflow-y:auto;
+    scroll-snap-type:y mandatory;
     font-family:Arial,Helvetica,sans-serif;
     background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
-
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
 }
 
-/* each full screen section */
+/* ===== SLIDES ===== */
 .slide{
     height:100vh;
     width:100%;
@@ -34,12 +29,11 @@ body{
     justify-content:center;
     align-items:center;
     scroll-snap-align:start;
-    position:relative;
     padding:40px;
     text-align:center;
 }
 
-/* ===== HERO (your original top part) ===== */
+/* ===== HERO ===== */
 .hero h1{
     font-size:64px;
     color:white;
@@ -52,7 +46,7 @@ body{
     font-size:24px;
 }
 
-/* slider stays same */
+/* ===== SLIDER (FIXED) ===== */
 .slider{
     margin-top:40px;
     width:800px;
@@ -69,15 +63,17 @@ body{
     height:100%;
     object-fit:cover;
     position:absolute;
+    top:0;
+    left:0;
     opacity:0;
-    transition:opacity 1s;
+    transition:opacity 1s ease;
 }
 
 .slider img.active{
     opacity:1;
 }
 
-/* ===== FRIEND SLIDES ===== */
+/* ===== WISHES ===== */
 .wishes{
     background:linear-gradient(135deg,#111,#2a2a2a);
     color:white;
@@ -90,47 +86,29 @@ body{
 
 .friend{
     width:80%;
-    max-width:1000px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    max-width:900px;
     background:#1c1c1c;
-    padding:20px;
+    padding:25px;
     border-radius:15px;
     margin:15px 0;
     box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-.friend .text{
-    width:50%;
     text-align:left;
 }
 
-.friend .text h2{
-    font-size:28px;
+/* ✍️ cursive wishes */
+.friend h2{
+    font-size:26px;
     margin-bottom:10px;
 }
 
-.friend .text p{
-    font-size:18px;
-    color:#ddd;
+.friend p{
+    font-size:20px;
+    font-family:"Brush Script MT", cursive;
+    line-height:1.5;
+    color:#f1f1f1;
 }
 
-.friend .images{
-    width:40%;
-    display:flex;
-    gap:10px;
-    justify-content:flex-end;
-}
-
-.friend .images img{
-    width:100px;
-    height:100px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-/* Confetti (unchanged) */
+/* ===== CONFETTI ===== */
 .confetti{
     position:absolute;
     width:12px;
@@ -149,12 +127,11 @@ body{
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- ===== SLIDE 1 ===== -->
+<!-- ===== HERO ===== -->
 <section class="slide hero">
 
 <h1>🎉 Všetko najlepšie k narodeninám, ty debil! 🎉</h1>
@@ -169,72 +146,55 @@ body{
 
 </section>
 
-<!-- ===== SLIDE 2 ===== -->
+<!-- ===== WISHES ===== -->
 <section class="slide wishes">
 
 <h1>💬 Wishes from friends</h1>
 
 <div class="friend">
-    <div class="text">
-        <h2>John</h2>
-        <p>Happy birthday bro! Stay legendary and never change 🚀</p>
-    </div>
-    <div class="images">
-        <img src="img1.jpg">
-        <img src="img2.jpg">
-    </div>
+    <h2>John</h2>
+    <p>Happy birthday bro, stay strong, stay unbreakable and keep dominating life 🚀</p>
 </div>
 
 <div class="friend">
-    <div class="text">
-        <h2>Sarah</h2>
-        <p>Wish you health, money and zero stress 💀❤️</p>
-    </div>
-    <div class="images">
-        <img src="img3.jpg">
-    </div>
+    <h2>Sarah</h2>
+    <p>Wishing you peace, success and a life full of wins and good chaos 💀✨</p>
+</div>
+
+<div class="friend">
+    <h2>Mike</h2>
+    <p>Another year older, still legendary. Don’t ever lose that energy 🔥</p>
 </div>
 
 </section>
 
 <script>
 
-// ===== SLIDER =====
+// ===== SLIDER FIXED =====
 const images=document.querySelectorAll(".slider img");
 
 let current=0;
 
 setInterval(()=>{
-
     images[current].classList.remove("active");
     current=(current+1)%images.length;
     images[current].classList.add("active");
-
 },4000);
 
 
 // ===== CONFETTI =====
-const colors=[
-"#ff4d6d",
-"#ffd60a",
-"#00bbf9",
-"#06d6a0",
-"#9b5de5",
-"#ffffff"
-];
+const colors=["#ff4d6d","#ffd60a","#00bbf9","#06d6a0","#9b5de5","#ffffff"];
 
 for(let i=0;i<180;i++){
 
     const c=document.createElement("div");
 
     c.className="confetti";
-
     c.style.left=Math.random()*100+"vw";
     c.style.background=colors[Math.floor(Math.random()*colors.length)];
     c.style.animationDuration=(3+Math.random()*5)+"s";
     c.style.animationDelay=Math.random()*5+"s";
     c.style.opacity=Math.random();
-    c.style.transform=`rotate(${Math.random()*360}deg)`;
 
     document.body.appendChild(c);
 }
