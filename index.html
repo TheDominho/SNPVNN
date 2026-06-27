@@ -278,30 +278,28 @@ setInterval(()=>{
 
 
 /* ===== WISHES SLIDER ===== */
-const wishImages=document.querySelectorAll(".wishes-slider img");
+const wishImages = document.querySelectorAll(".wishes-slider img");
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
 
-let w=0;
+let currentWishIndex = 0;
 
-setInterval(()=>{
-    wishImages[w].classList.remove("active");
-    w=(w+1)%wishImages.length;
-    wishImages[w].classList.add("active");
-},3500);
+/* slider rotation */
+setInterval(() => {
+    wishImages[currentWishIndex].classList.remove("active");
+    currentWishIndex = (currentWishIndex + 1) % wishImages.length;
+    wishImages[currentWishIndex].classList.add("active");
+}, 3500);
 
-
-/* ===== MODAL FIX (correct image) ===== */
-const modal=document.getElementById("modal");
-const modalImg=document.getElementById("modalImg");
-
-document.querySelectorAll(".wishes-slider img").forEach(img=>{
-    img.addEventListener("click",()=>{
-        modal.style.display="flex";
-        modalImg.src = img.src;
-    });
+/* ONLY open currently visible image */
+document.querySelector(".wishes-slider").addEventListener("click", () => {
+    modal.style.display = "flex";
+    modalImg.src = wishImages[currentWishIndex].src;
 });
 
-modal.addEventListener("click",()=>{
-    modal.style.display="none";
+/* close modal */
+modal.addEventListener("click", () => {
+    modal.style.display = "none";
 });
 
 
