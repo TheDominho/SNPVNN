@@ -15,8 +15,18 @@
 html, body{
     height:100%;
     font-family:Arial,Helvetica,sans-serif;
-    background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
 
+    /* 🔥 FIX 1: remove elastic scroll / pink overscroll */
+    overflow:hidden;
+}
+
+/* scroll container instead of body scroll */
+body{
+    background:linear-gradient(135deg,#ff9ec4,#ffd6e7);
+}
+
+.container{
+    height:100vh;
     overflow-y:auto;
     scroll-snap-type:y mandatory;
 }
@@ -114,7 +124,6 @@ html, body{
     margin-bottom:8px;
 }
 
-/* readable cursive */
 .friend p{
     font-size:18px;
     font-family:"Segoe Script","Comic Sans MS",cursive;
@@ -143,6 +152,7 @@ html, body{
     transition:opacity 1s ease;
 }
 
+/* 🔥 FIX 2: only ONE active image */
 .wishes-slider img.active{
     opacity:1;
 }
@@ -166,6 +176,8 @@ html, body{
 
 <body>
 
+<div class="container">
+
 <!-- ===== HERO ===== -->
 <section class="slide hero">
 
@@ -188,41 +200,41 @@ html, body{
 
 <div class="wishes-container">
 
-    <!-- LEFT TEXT -->
     <div class="wishes-text">
 
         <div class="friend">
-    <h2>Adam</h2>
-        <p>Ešte hraješ hry s kamošmi či ako čo 🚀</p>
-    </div>
-    
-    <div class="friend">
-        <h2>Marek</h2>
-        <p>Ti hovorím že prompmtím jak boh</p>
-    </div>
-    
-    <div class="friend">
-        <h2>Jakub</h2>
-        <p>Nech ťa Domino neznasilnuje po nociach jak mňa a Tomáša na intráku 🔥</p>
-    </div>
-        
-    <div class="friend">
-        <h2>Domino</h2>
-        <p>AENE aspoň vidíš ako sa deployuje a releasuje AENE</p>
-    </div>
+            <h2>Adam</h2>
+            <p>Ešte hraješ hry s kamošmi či ako čo 🚀</p>
+        </div>
+
+        <div class="friend">
+            <h2>Marek</h2>
+            <p>Ti hovorím že prompmtím jak boh</p>
+        </div>
+
+        <div class="friend">
+            <h2>Jakub</h2>
+            <p>Nech ťa Domino neznásilňuje po nociach 🔥</p>
+        </div>
+
+        <div class="friend">
+            <h2>Domino</h2>
+            <p>AENE aspoň vidíš ako sa deployuje a releasuje AENE</p>
+        </div>
 
     </div>
 
-    <!-- RIGHT SLIDER -->
     <div class="wishes-slider">
         <img src="img4.jpg" class="active">
-        <img src="img5.jpg" class="active">
-        <img src="img6.jpg" class="active">
+        <img src="img5.jpg">
+        <img src="img6.jpg">
     </div>
 
 </div>
 
 </section>
+
+</div>
 
 <script>
 
